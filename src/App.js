@@ -22,7 +22,7 @@ class UserList extends Component {
     return (
       <div>
         {users.map((user)=>(
-          <User user={user}/>
+          <User key={user.username} user={user}/>
         ))}
       </div>
     )
@@ -38,6 +38,56 @@ class User extends Component {
   }
 }
 
+class AddUser extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      firstName: '',
+      lastName: '',
+      username: ''
+    }
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+  }
+
+  handleChange = (event) => {
+    const target = event.target;
+    const name = target.name;
+    const value = target.value;
+    this.setState({
+      [name]: value
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Add User</h1>
+        <form onSubmit={this.handleSubmit}>
+          <input 
+            type="text" 
+            placeholder="first name" 
+            name="firstName"
+            value={this.state.firstName} 
+            onChange={this.handleChange}
+          />
+          <input 
+            type="text" 
+            placeholder="last name" 
+            name="lastName"
+            value={this.state.lastName}
+            onChange={this.handleChange}
+          />
+          <input type="text" placeholder="username" value={this.state.username}/>
+          <input type="submit" value="Submit"/>
+        </form>
+      </div>
+    )
+  }
+}
+
 class App extends Component {
   render() {
     return (
@@ -47,6 +97,7 @@ class App extends Component {
           <h1 className="App-title">ReactND - Coding Practice</h1>
         </header>
         <UserList />
+        <AddUser />
       </div>
     );
   }
