@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import AddUser from './AddUser';
+import UserList from './UserList';
+
 import logo from './logo.svg';
 import './App.css';
 
@@ -18,40 +20,18 @@ const users = [
   {firstName: "Charlie", lastName: "Langworth", username: "Miguel", game: 8},
 ]
 
-class UserList extends Component {
-  state = {
-    display: true
-  }
-  toggleGameDisplay = () => {
-    this.setState((currState)=>({
-      display: !currState.display
-    }))
-  }
-
-  render() {
-    return (
-      <div>
-        {users.map((user)=>(
-          <User key={user.username} user={user}/>
-        ))}
-        <button onClick={this.toggleGameDisplay}>{this.state.display? 'Hide':'Show'}</button>
-      </div>
-    )
-  }
-}
-
-class User extends Component {
-  render() {
-    const {user} = this.props;
-    return (
-      <p>{user.username} played {user.game} {user.game > 1 ? "games" : "game"}</p>
-    )
-  }
-}
 
 
 
 class App extends Component {
+  state= {
+    users: [
+      {firstName: "Enrique", lastName: "Bruen", username: "Bart", game: 0},
+      {firstName: "Delilah", lastName: "Keebler", username: "Linnie", game: 3},
+      {firstName: "Chelsie", lastName: "Leannon", username: "Lexus", game: 14},
+      {firstName: "Charlie", lastName: "Langworth", username: "Miguel", game: 8}
+    ]
+  }
   render() {
     return (
       <div className="App">
@@ -59,7 +39,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">ReactND - Coding Practice</h1>
         </header>
-        <UserList />
+        <UserList users={this.state.users} />
         <AddUser />
       </div>
     );
