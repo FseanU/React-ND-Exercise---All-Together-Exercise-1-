@@ -13,16 +13,6 @@ React and prepare you for your first project.
 The instructions for this project are located in the `instructions.md` file.
 */
 
-const users = [
-  {firstName: "Enrique", lastName: "Bruen", username: "Bart", game: 0},
-  {firstName: "Delilah", lastName: "Keebler", username: "Linnie", game: 3},
-  {firstName: "Chelsie", lastName: "Leannon", username: "Lexus", game: 14},
-  {firstName: "Charlie", lastName: "Langworth", username: "Miguel", game: 8},
-]
-
-
-
-
 class App extends Component {
   state= {
     users: [
@@ -32,6 +22,13 @@ class App extends Component {
       {firstName: "Charlie", lastName: "Langworth", username: "Miguel", game: 8}
     ]
   }
+
+  onAddUser = (newUser) => {
+    this.setState(currState => ({
+      users: [...currState.users, newUser]
+    }))
+  }
+
   render() {
     return (
       <div className="App">
@@ -40,7 +37,7 @@ class App extends Component {
           <h1 className="App-title">ReactND - Coding Practice</h1>
         </header>
         <UserList users={this.state.users} />
-        <AddUser />
+        <AddUser users={this.state.users} onAddUser={this.onAddUser}/>
       </div>
     );
   }
