@@ -15,9 +15,11 @@ class UserList extends React.Component {
     return (
       <div>
         {this.props.users.map((user)=>(
-          <User key={user.username} user={user}/>
+          <User key={user.username} user={user} display={this.state.display} />
         ))}
-        <button onClick={this.toggleGameDisplay}>{this.state.display? 'Hide':'Show'}</button>
+        <button onClick={this.toggleGameDisplay}>
+          {this.state.display? 'Hide the Number of Games Played':'Show the Number of Games Played'}
+        </button>
       </div>
     )
   }
