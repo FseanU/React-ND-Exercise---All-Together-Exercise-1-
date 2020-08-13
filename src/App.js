@@ -16,14 +16,15 @@ The instructions for this project are located in the `instructions.md` file.
 class App extends Component {
   state= {
     users: [
-      {firstName: "Enrique", lastName: "Bruen", username: "Bart", game: 0},
-      {firstName: "Delilah", lastName: "Keebler", username: "Linnie", game: 3},
-      {firstName: "Chelsie", lastName: "Leannon", username: "Lexus", game: 14},
-      {firstName: "Charlie", lastName: "Langworth", username: "Miguel", game: 8}
+      {firstName: "Enrique", lastName: "Bruen", username: "Bart", numOfGamePlayed: 0},
+      {firstName: "Delilah", lastName: "Keebler", username: "Linnie", numOfGamePlayed: 3},
+      {firstName: "Chelsie", lastName: "Leannon", username: "Lexus", numOfGamePlayed: 14},
+      {firstName: "Charlie", lastName: "Langworth", username: "Miguel", numOfGamePlayed: 8}
     ]
   }
 
   onAddUser = (newUser) => {
+    newUser.numOfGamePlayed = 0;
     this.setState(currState => ({
       users: [...currState.users, newUser]
     }))
